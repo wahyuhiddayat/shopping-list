@@ -1,6 +1,29 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Shopping List</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <!-- Anda bisa menambahkan link lain di sini jika perlu -->
+            </ul>
+            <span class="navbar-text text-light me-3">
+                Hello, {{name}}
+            </span>
+            <a href="{% url 'main:logout' %}" class="btn btn-outline-light">Logout</a>
+        </div>
+    </div>
+</nav>
+
     <h1>Shopping List Page</h1>
 
     <h5>Name:</h5>
@@ -25,6 +48,18 @@
                 <td>{{product.price}}</td>
                 <td>{{product.description}}</td>
                 <td>{{product.date_added}}</td>
+                <td>
+                    <a href="{% url 'main:edit_product' product.pk %}">
+                        <button>
+                            Edit
+                        </button>
+                    </a>
+                    <a href="{% url 'main:delete_product' product.pk %}">
+                        <button>
+                            Delete
+                        </button>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
     </table>
